@@ -1,37 +1,27 @@
-//define a variable to hold experiment name
-let experiment = 'Grace';
-console.log(typeof experiment);
-let trialCountMax = 20;
-// TODO: randomize colors
-let colors = ['red', 'green', 'blue'];
-
-alert('Welcome to the ' + experiment + ' experiment!');
-
-trialCountMax = 40;
-//console.log(charAt(0));
+//console.log(Hello World);
+// console.log("Hello World');
+// console.log('Hello World');
+// console.log("Hello World");
 
 
-// at halfway point we will display pause screen
-let halfWayCount = trialCountMax / 2;
 
-console.log(halfWayCount);
 
-/* 
-multi
-line
-comment 
-*/
+let courseName = 'Programming for Psychologists';
+console.log(courseName.length); // Output: 29
+// Output the value for courseName translated to all capital letters.
+// Expected result: PROGRAMMING FOR PSYCHOLOGISTS
+let courseNameTall = courseName.toUpperCase();
+console.log(courseNameTall);
+//took an extra step but still got there
 
-let correct = true;
-console.log(typeof correct);
+// Output the index position of the word 'Psychologists' within the string stored in courseName.
+// Expected result: 16
+console.log(courseName.indexOf("Psychologists"));
 
-// An Array of Numbers
-let scores = [75.5, 91, 91.6, 92.3, 45.5];
+// Output the value for courseName with the word 'Programming' replaced with the word 'Coding'.
+// Expected result: "Coding for Psychologists"
+console.log([updated = courseName.replace("Programming", "Coding")]);
 
-// An Array of Strings
-let words = ['pear', 'mouse', 'red', 'igloo'];
 
-// An Array of mixed data types, including a sub-array
-let misc = [90, 'green', 45.5, ['a', 'b', 'c']];
 
 
