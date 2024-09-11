@@ -10,11 +10,9 @@ how to make my alert show up in javascript?
 how do I use the date.now() command to record reaction time in an alert in javascript?
 
 
-
-
-
 ## Outside sites
 _Link any outside sites you referenced this week. You should exclude any resources/links that were provided in the course material._
 
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul
 
-
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em
