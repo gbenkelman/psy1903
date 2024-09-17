@@ -4,6 +4,8 @@ alert("In this experiment we will measure your response time. You will be shown 
 let randomNumber1 = Math.floor(Math.random() * 10) + 1;
 let randomNumber2 = Math.floor(Math.random() * 10) + 1;
 
+let answer1 = randomNumber1 + randomNumber2;
+
 //Start timer 
 let startTime1 = Date.now();
 //ask initial question
@@ -14,6 +16,14 @@ let endTime1 = Date.now();
 let reactionTime1 = ((endTime1 - startTime1) / 1000);
 //closing alert
 alert("You answered " + response1 + " in" + reactionTime1 + " seconds!");
+
+let feedback1 = '';
+if (response1 == answer1) {
+    feedback1 = 'Correct!';
+} else {
+    feedback1 = 'Incorrect.';
+}
+alert(feedback1 + ' The expected answer is ' + answer1 + '.');
 
 let randomNumber3 = (Math.floor(Math.random() * 10) + 1);
 let randomNumber4 = (Math.floor(Math.random() * 10) + 1);
