@@ -22,3 +22,5 @@ for (let i = 0; i < 3; i++) {
     conditions.push({ num1: num1, num2: num2, answer: answer });
 };
 
+console.log(conditions);
+
