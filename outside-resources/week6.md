@@ -5,3 +5,5 @@ what css code should I use to accomplish this description: Make the name of the 
 how to I make text centered in css?
 
 how do i change the style of an input box like this: <input name="response" type="number" ></input> using css?
+
+external website:
