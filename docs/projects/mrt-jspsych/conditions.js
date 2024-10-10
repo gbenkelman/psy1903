@@ -2,7 +2,7 @@ let jsPsych = initJsPsych();
 
 let timeline = [];
 
-// Welcome
+// added space bar thing
 let welcomeTrial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `
@@ -85,7 +85,7 @@ for (let block of conditions) {
     };
     timeline.push(blockIntroTrial);
 
-    // Add trials for each condition in the block
+    // changed format of questions
     for (let condition of blockConditions) {
         let conditionTrial = {
             type: jsPsychSurveyHtmlForm,
