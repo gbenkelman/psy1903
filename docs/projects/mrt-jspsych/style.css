@@ -1,0 +1,30 @@
+.key {
+    border: 1px solid black;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+
+.teal {
+    background-color: teal;
+    font-family: "Georgia", serif;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.num {
+    font-size: 36px;
+    text-align: center;
+}
+
+.numbers {
+    background-color: yellow;
+}
+
+input[type="number"] {
+    font-size: 36px;
+    text-align: center;
+    width: 100px;
+}
