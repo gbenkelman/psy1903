@@ -54,6 +54,24 @@ let conditions = [
     }
 ];
 
+var likert_scale = [
+    "Strongly Disagree",
+    "Disagree",
+    "Neutral",
+    "Agree",
+    "Strongly Agree"
+];
+
+let likert = {
+    type: jsPsychSurveyLikert,
+    questions: [
+        { prompt: "I enjoy solving math problems.", labels: likert_scale },
+        { prompt: "I find math easy.", labels: likert_scale },
+    ],
+    randomize_question_order: true
+};
+timeline.push(likert);
+
 for (let block of conditions) {
     let blockConditions = jsPsych.randomization.repeat(block.conditions, 1);
 
