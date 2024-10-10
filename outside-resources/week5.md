@@ -33,3 +33,7 @@ I want the function to show more specific data from this experiment; where do I 
 
 "similar to .ignore in JS to ignore data, is there a specific function that iwll tell the code to collect a certain subset of the results?"
 
+
+"how do I use two different JS files in one project? I am creating a condition in conditions.js and referencing it in experiment.js?"
+
+
