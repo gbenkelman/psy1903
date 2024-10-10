@@ -53,7 +53,7 @@ let conditions = [
         conditions: part3Conditions
     }
 ];
-
+//new here:
 var likert_scale = [
     "Strongly Disagree",
     "Disagree",
