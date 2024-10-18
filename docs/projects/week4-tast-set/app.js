@@ -1,4 +1,4 @@
-
+/*
 function celsiusToFahrenheit(celcius) {
     return (celcius * 1.8) + 32;
 }
@@ -19,9 +19,9 @@ function convertTemp(temp, convertTo) {
 
 console.log(convertTemp(10, 'c')); // Expected output: -12.222222222222221
 console.log(convertTemp(10, 'f')); // Expected output: 50
+*/
+let words = ['apple', 'banana', 'cherry', 'pear', 'grape'];
 
-
-/*
 function getWordLengths(words) {
     let lengths = [];
     for (let i = 0; i < words.length; i++) {
@@ -30,9 +30,7 @@ function getWordLengths(words) {
     return lengths;
 }
 
-let words = ['apple', 'banana', 'cherry', 'pear', 'grape'];
-console.log(getWordLengths(words)); // Expected output: [5, 6, 6, 4, 5]
-
+console.log(getWordLengths(words));
 
 function getLongestWord(words) {
     let longestWord = '';
@@ -43,13 +41,7 @@ function getLongestWord(words) {
         }
     }
 
-    // Return the longest word after the loop
     return longestWord;
 }
 
-
-let words = ['apple', 'banana', 'cherry', 'pear', 'grape'];
 console.log(getLongestWord(words));
-return lengths;
-
-*/
