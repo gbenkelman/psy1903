@@ -68,6 +68,7 @@ console.log(getOddNumbers([12, 45, 10, 11, 61])); //
 
 */
 
+/*
 function filterNumbers(numbers, evenOrOdd) {
     let numbers1 = [];
 
@@ -92,3 +93,40 @@ console.log(filterNumbers([1, 2, 3, 4, 5], 'odd')); // Expected output: [1, 3, 5
 
 console.log(filterNumbers([45, 10, 11, 61], 'even')); // Expected output: [10]
 console.log(filterNumbers([45, 10, 11, 61], 'odd')); // Expected output: [45, 11, 61]
+
+*/
+
+
+//alert
+alert("Welcome to the Response Time Task! In this experiment, you'll see random numbers and respond if they are even (type 'e') or odd (type 'o'). Press OK to begin.");
+
+let results = [];
+
+// trials
+for (let i = 0; i < 5; i++) {
+    // Generate a random number between 1 and 20
+    let randomNumber = Math.floor(Math.random() * 20) + 1;
+
+    let startTime = performance.now();
+    let response = prompt(`Is the number ${randomNumber} even or odd? (type 'e' for even, 'o' for odd)`);
+    let endTime = performance.now();
+
+    // response time in seconds
+    let responseTime = (endTime - startTime) / 1000;
+
+    // even or odd ?
+    let isEven = randomNumber % 2 === 0;
+    let correct = (response === 'e' && isEven) || (response === 'o' && !isEven);
+
+    results.push({
+        number: randomNumber,
+        response: response,
+        correct: correct,
+        responseTime: responseTime
+    });
+}
+
+// debrief
+alert("Thank you for participating!");
+
+console.log(results);
