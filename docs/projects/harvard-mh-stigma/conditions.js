@@ -1,20 +1,20 @@
 // Modify the following `blocksA`, `blocksB`, and `words` arrays with appropriate values for your experiment
 let blocksA = [
-    ['Mental Health Conditions', 'Physical Health Conditions'],
+    ['Mental Health Conditions', 'Mental Health Treatment'],
     ['Humanizing Words', 'Stigmatizing Words']
 ];
 
 let blocksB = [
-    ['Mental Health Conditions or Humanizing Words', 'Physical Health Conditions or Stigmatizing Words'],
-    ['Mental Health Conditions or Stigmatizing Word', 'Physical Health Conditions or Humanizing Word']
+    ['Mental Health Conditions or Humanizing Words', 'Mental Health Treatment or Stigmatizing Words'],
+    ['Mental Health Conditions or Stigmatizing Word', 'Mental Health Treatment or Humanizing Word']
 ];
 
 // There should be 10 words per category
 let words = {
-    'Mental Health Conditions': ['home', 'wedding', 'children', 'relative', 'parent', 'cousin', 'sibling', 'spouse', 'house', 'baby'],
-    'Physical Health Conditions': ['corporation', 'salary', 'interview', 'promotion', 'resume', 'office', 'income', 'hiring', 'bosses', 'corporate'],
-    'Humanizing Words': ['Calvin', 'Ben', 'Jamal', 'Charles', 'Mateo', 'Henry', 'Lucas', 'Andrew', 'Darnell', 'George'],
-    'Stigmatizing Words': ['Mariah', 'Emily', 'Julia', 'Brenda', 'Tasha', 'Priya', 'Kelsey', 'Jasmine', 'Grace', 'Camila'],
+    'Mental Health Conditions': ['Depression', 'Anxiety', 'OCD', 'PTSD', 'Eating disorder', 'body dysmorphia', 'Bipolar Disorder'],
+    'Mental Health Treatment': ['Therapy', 'Medication', 'Support Group', 'Counseling', 'Psychiatry', 'CAMHS', 'Peer Counseling', 'SHARE Counselors', 'Tutors', 'Resident Deans'],
+    'Humanizing Words': ['capable', 'normal', 'challenging', 'feeling', 'sane', 'rational', 'realistic', 'human',],
+    'Stigmatizing Words': ['crazy', 'insane', 'psychotic', 'unstable', 'weak', 'fragile', 'dangerous', 'unpredictable', 'weird', 'useless'],
 };
 
 // Your final experiment should show 36 words per category; 
