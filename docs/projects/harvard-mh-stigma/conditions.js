@@ -11,9 +11,9 @@ let blocksB = [
 
 // There should be 10 words per category
 let words = {
-    'Mental Health Conditions': ['Depression', 'Anxiety', 'OCD', 'PTSD', 'Eating disorder', 'body dysmorphia', 'Bipolar Disorder'],
-    'Mental Health Treatment': ['Therapy', 'Medication', 'Support Group', 'Counseling', 'Psychiatry', 'CAMHS', 'Peer Counseling', 'SHARE Counselors', 'Tutors', 'Resident Deans'],
-    'Humanizing Words': ['capable', 'normal', 'challenging', 'feeling', 'sane', 'rational', 'realistic', 'human',],
+    'Mental Health Conditions': ['depression', 'anxiety', 'obsessive compulsive disorder', 'post traumatic stress disorder', 'eating disorder', 'body dysmorphia', 'bipolar disorder', 'personality disorder', 'schizophrenia', 'substance abuse disorder'],
+    'Mental Health Treatment': ['therapy', 'medication', 'support group', 'counseling', 'psychiatry', 'CAMHS', 'peer counseling', 'SHARE counselors', 'tutors', 'resident deans'],
+    'Humanizing Words': ['capable', 'normal', 'challenging', 'feeling', 'sane', 'rational', 'realistic', 'human', 'reasonable', 'difficult'],
     'Stigmatizing Words': ['crazy', 'insane', 'psychotic', 'unstable', 'weak', 'fragile', 'dangerous', 'unpredictable', 'weird', 'useless'],
 };
 

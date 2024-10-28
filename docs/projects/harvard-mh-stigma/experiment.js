@@ -2,38 +2,26 @@ let jsPsych = initJsPsych();
 
 let timeline = [];
 
-//Various intros, priming video, likert trial
-let broadIntroTrial = {
+// Welcome Trial //
+let welcomeTrial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: ` <h1> <span class = 'title'>Welcome to the Harvard Mental Health Stigma IAT!</span></h1>
-    <p> In this study, you will complete an implicit association test (IAT). </p> 
-    <p> You will be asked to categorize mental and physical health conditions as well as words associated with humanizing and stigmatizing language.</p> 
-    <p> In addition to the IAT, you will be asked to watch a short video and answer some questions about your attitudes, beliefs, and demographics.</p>
-    <p> There are three parts to this experiment.</p>
-    <p> press the <span class = 'key'>SPACE</span> to begin.</p> 
+    stimulus: `
+    <h1 class='expName'>Welcome to the Harvard Mental Health Stigma IAT!</h1> 
+
+    <p>In this experiment, you will complete the following three tasks:</p>
+
+    <p>In Task 1, you will be asked to watch a short video.</p>
+    <p>In Task 2, you will answer a brief series of questions.</p>
+    <p>In Task 3, you will be asked to categorize a series of words.</p>
+
+    <p>Press <span class='key'>SPACE</span> to begin.</p>
     `,
     choices: [' '],
 }
-timeline.push(broadIntroTrial);
+timeline.push(welcomeTrial);
 
-let specificIntroTrial = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus:
-        `<h1> <span class = 'title'>Welcome to the Harvard Mental Health Stigma IAT!</span></h1>
-    <p>In this experiment, you will be asked to complete the following three tasks:</p>
-    <span class = 'box'>
-    <ul>
-        <li>In Task 1, you will be asked to watch a short video.</li>
-        <li>In Task 2, you will answer a brief series of questions.</li>
-        <li>In Task 3, you will be asked to categorize a series of words.</li>
-    </ul>
-    </span>
-    <p> press the <span class = 'key'>SPACE</span> to begin.</p> 
-    `,
-    choices: [' '],
-} //needs work with bullet spacing
-timeline.push(specificIntroTrial);
 
+// Video Trial //
 let videoTrial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: ` 
@@ -49,21 +37,17 @@ let videoTrial = {
     <p> Press the <span class = 'key'>SPACE</span> key when you have completed the video and are ready to move on to the next task. </p>
     `,
     choices: [' '],
-
-} //needs button focus refining 
+    data: {
+        collect: true,
+        trialType: 'prime',
+        whichPrime: 'video'
+    },
+};
 timeline.push(videoTrial);
 
-//task 2 of 3
-let two = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<h1>Task 2 of 3</h1>
-    <p>Please answer the following questions.</p>
-    <p>Press the <span class=key>SPACE</span class> key to begin.</p>`,
-    choices: ' ',
-};
-timeline.push(two);
-
-var likert_scale = [
+// Survey Trial //
+// Define likert scale
+let likertScale = [
     "Strongly Disagree",
     "Disagree",
     "Neutral",
@@ -71,32 +55,27 @@ var likert_scale = [
     "Strongly Agree"
 ];
 
-let likert = {
+// Survey questions
+let survey = {
     type: jsPsychSurveyLikert,
     questions: [
-        { prompt: "I feel comfortable expressing my feelings.", labels: likert_scale },
-        { prompt: "I feel that my mental health is valued at Harvard.", labels: likert_scale },
-        { prompt: "At Harvard, I feel like I belong.", labels: likert_scale },
-        { prompt: "Mental Health is something that should be taken seriously.", labels: likert_scale },
-        { prompt: "It is normal to have issues with mental health.", labels: likert_scale },
-        { prompt: "There are many resources for mental health issues at Harvard.", labels: likert_scale },
+        { prompt: "I feel comfortable expressing my feelings.", labels: likertScale },
+        { prompt: "I feel that my mental health is valued at Harvard.", labels: likertScale },
+        { prompt: "At Harvard, I feel like I belong.", labels: likertScale },
+        { prompt: "Mental health is something that should be taken seriously.", labels: likertScale },
+        { prompt: "It is normal to have issues with mental health.", labels: likertScale },
+        { prompt: "Physical health issues", labels: likertScale },
     ],
     randomize_question_order: true,
+    data: {
+        collect: true,
+        trialType: 'questionnaire',
+    },
 };
-timeline.push(likert);
-
-let three = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<h1>Task 3 of 3</h1>
-    <p>In this final task, you will be shown a series of words and asked to sort them into categories.</p>
-    <p>Press the <span class=key>SPACE</span class> key to begin.</p>`,
-    choices: ' ',
-};
-timeline.push(three);
+timeline.push(survey);
 
 
-jsPsych.run(timeline);
-
+// IAT //
 //Beginning the outer loop
 //Establishing counter for the four-part block seperation screens
 let counter = 1;
@@ -112,16 +91,16 @@ for (let block of conditions) {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
         <h1><span class = 'title'>Part ${counter++} of 4</span></h1> 
-        <p> In this part, the two categories will be: <span class = 'bold'>${leftCategory}</span> and <span class = 'bold'>${rightCategory}</span></p>
+        <p>In this part, the two categories will be: <span class = 'bold'>${leftCategory}</span> and <span class = 'bold'>${rightCategory}</span></p>
         <p>If the word you see in the middle of the screen should be sorted into the <span class = 'bold'>${leftCategory}</span> category, press the <span class = 'key'>F</span> key.</p>
         <p>If thee word you see in the middle of the screen should be sorted into the  <span class = 'bold'>${rightCategory}</span> category, press the <span class = 'key'>J</span> key.</p>
-        <p> press the <span class = 'key'>SPACE</span> to begin.</p>  
+        <p>Press the <span class = 'key'>SPACE</span> to begin.</p>  
         `,
         choices: [' '],
     }
     timeline.push(blockintroTrial);
 
-    //Trial inner loop
+    // Trial inner loop
     for (let trial of block.trials) {
         let iatTrial = {
             type: jsPsychHtmlKeyboardResponse,
@@ -141,16 +120,15 @@ for (let block of conditions) {
             },
             on_finish: function (data) {
                 if (data.response == trial.expectedResponse) {
-                    iatTrial.data.correct = true;
+                    data.correct = true;
                 } else {
-                    iatTrial.data.correct = false;
-                }//not finished yet 
+                    data.correct = false;
+                };
             }
-
         }
         timeline.push(iatTrial);
 
-        //Adding the fixation trial inbetween iaTrials
+        // Adding the fixation trial in between iatTrials
         let fixationTrial = {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: `+ `,
@@ -230,5 +208,5 @@ let debriefTrial = {
 };
 timeline.push(debriefTrial);
 
-//Running the experiment 
+
 jsPsych.run(timeline);
