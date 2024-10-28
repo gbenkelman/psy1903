@@ -59,3 +59,7 @@ ul {
 .bold {
     font-weight: bold;
 }
+
+.txt {
+    text-align: left;
+}
