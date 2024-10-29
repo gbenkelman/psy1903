@@ -1,49 +1,130 @@
-let jsPsych = initJsPsych({
-    show_progress_bar: true
-});
+let jsPsych = initJsPsych()
 
 let timeline = [];
 
-// Welcome Trial //
+// Welcome Trial
 let welcomeTrial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `
-    <h1>Welcome to the Trustworthiness Rating Task</h1>
-    <p>You will see a series of faces. Pay attention as the faces pop up on the screen."</p>
-    <p>Press SPACE to begin.</p>
-`,
+    <h1 class='welcome'> Welcome to our Demo Experiment of the Animation Plug-in!</h1> 
+    <p>In this experiment, you will be asked to look at various faces and categorize them by their level of trustworthiness</p>
+    <p>Press <span class='key'>SPACE</span> to begin.</p>
+    `,
     choices: [' '],
-}
+};
+
 timeline.push(welcomeTrial);
 
-// Define animation stimuli array
-var animation_sequence = [
-    'images/img1.png',
-    'images/img2.png',
-    'images/img3.png',
-    'images/img4.png',
-    'images/img5.png',
-    'images/img6.png',
-    'images/img7.png',
-    'images/img8.png',
-    'images/img9.png'
+
+// Trial 1 Untrustworthy
+let animationSequence1 = [
+    'images/IMG1.png',
+    'images/IMG2.png'
 ];
 
-var animation_trial = {
+let animationTrial1 = {
     type: jsPsychAnimation,
-    stimuli: animation_sequence,
-    sequence_reps: 3,
+    stimuli: animationSequence1,
+    sequence_reps: 5,
     frame_time: 300,
-    prompt: '<p>Watch the faces.</p>',
+    prompt: '<p> Watch the faces.</p>',
 };
-timeline.push(animation_trial);
+timeline.push(animationTrial1);
 
-// Debrief and end screen
-let debrief = {
+let questionTrial1 = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p>After viewing these faces, what word would you use to categorize them out of the following: Trustworthy, Neutral, Untrustworthy ?</p>',
+    html: `<p><input type='text' name='category' id='mood'></p>`,
+    autofocus: 'category', // id of the field we want to auto-focus on when the trial starts
+    button_label: 'Submit Answer',
+    data: {
+        collect: true,
+    },
+    on_finish: function (data) {
+        data.category = data.response.category1;
+    }
+}
+timeline.push(questionTrial1);
+
+// Trial 2 - Trustworthy
+let animationSequence2 = [
+    'images/IMG4.png',
+    'images/IMG5.png'
+];
+
+let animationTrial2 = {
+    type: jsPsychAnimation,
+    stimuli: animationSequence2,
+    sequence_reps: 5,
+    frame_time: 300,
+    prompt: '<p> Watch the faces.</p>',
+};
+timeline.push(animationTrial2);
+
+let questionTrial2 = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p>After viewing these faces, what word would you use to categorize them out of the following: Trustworthy, Neutral, Untrustworthy ?</p>',
+    html: `<p><input type='text' name='category' id='mood'></p>`,
+    autofocus: 'category', // id of the field we want to auto-focus on when the trial starts
+    button_label: 'Submit Answer',
+    data: {
+        collect: true,
+    },
+    on_finish: function (data) {
+        data.category = data.response.category2;
+    }
+}
+timeline.push(questionTrial2);
+
+// Trial 3 - Neutral 
+let animationSequence3 = [
+    'images/IMG6.png',
+    'images/IMG5.png',
+];
+
+let animationTrial3 = {
+    type: jsPsychAnimation,
+    stimuli: animationSequence3,
+    sequence_reps: 5,
+    frame_time: 300,
+    prompt: '<p> Watch the faces.</p>',
+};
+timeline.push(animationTrial3);
+
+let questionTrial3 = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p>After viewing these faces, what word would you use to categorize them out of the following: Trustworthy, Neutral, Untrustworthy ?</p>',
+    html: `<p><input type='text' name='category' id='mood'></p>`,
+    autofocus: 'category', // id of the field we want to auto-focus on when the trial starts
+    button_label: 'Submit Answer',
+    data: {
+        collect: true,
+    },
+    on_finish: function (data) {
+        data.category = data.response.category3;
+    }
+}
+timeline.push(questionTrial3);
+
+// Debrief //
+let debriefTrial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<h1>Thank you for participating!</h1><p>Press any key to complete the experiment.</p>`
+    stimulus: `
+        <h1>Thank you for your participation!</h1> 
+        <p>The experiment is complete. You can now close this tab.</p>
+    `,
+    choices: [' '], // Press SPACE to close, or set to jsPsych.NO_KEYS if no response is desired
+    on_start: function () {
+        let data = jsPsych.data
+            .get()
+            .filter({ collect: true })
+            .ignore(['stimulus', 'trial_type', 'trial_index', 'plugin_version', 'collect'])
+            .csv();
+        console.log(data);
+    }
 };
-timeline.push(debrief);
 
-// Run the experiment timeline
+timeline.push(debriefTrial);
+
 jsPsych.run(timeline);
+
