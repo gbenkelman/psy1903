@@ -2,6 +2,8 @@ let jsPsych = initJsPsych()
 
 let timeline = [];
 
+let participantId = Date.now();
+
 // Welcome Trial
 let welcomeTrial = {
     type: jsPsychHtmlKeyboardResponse,
@@ -106,24 +108,24 @@ let questionTrial3 = {
 }
 timeline.push(questionTrial3);
 
-// Debrief //
+
+// Debrief
 let debriefTrial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `
-        <h1>Thank you for your participation!</h1> 
-        <p>The experiment is complete. You can now close this tab.</p>
-    `,
-    choices: [' '], // Press SPACE to close, or set to jsPsych.NO_KEYS if no response is desired
-    on_start: function () {
-        let data = jsPsych.data
-            .get()
-            .filter({ collect: true })
-            .ignore(['stimulus', 'trial_type', 'trial_index', 'plugin_version', 'collect'])
-            .csv();
-        console.log(data);
-    }
-};
+    stimulus: function (data) {
 
+        let linkToQualtricsSurvey = `https://harvard.az1.qualtrics.com/jfe/form/SV_00wiDCrM188gWCq?experimentParticipantId=${participantId}`
+
+        return `
+        <h1>Thank you!</h1>
+        <p>
+            To complete your response, 
+            please follow <a href='${linkToQualtricsSurvey}'>this link</a> 
+            and complete the survey you see there.
+        </p>
+    `},
+    choices: ['NO KEYS']
+}
 timeline.push(debriefTrial);
 
 jsPsych.run(timeline);
