@@ -26,15 +26,44 @@ let welcomeTrial = {
 }
 timeline.push(welcomeTrial);
 
+//consentTrial
+let consentTrial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+    <h1 class='expName'>Consent</h1> 
+
+    <span class='box'>
+    <ul>
+    <li>This experiment is an educational exercise about learning to program and analyze a psychological experiment and not a “real” scientific experiment.</li>
+    <li>No identifying information is collected, and data will not be shared beyond our class.</li>
+    <li>If you agree to help out by completing the tasks and questionnaires, please click Continue. Otherwise, you may close this tab.</li>
+    <li>If you have any questions, please reach out to Dr. Garth Coombs <garthcoombs@fas.harvard.edu>, one of the head instructors of PSY 1903: Programming for Psychological Scientists.</li>
+
+     </ul>
+    </span>
+
+    <p>Press <span class='key'>SPACE</span> to begin.</p>
+    `,
+    choices: [' '],
+}
+timeline.push(consentTrial);
 
 // Video Trial //
+
+let primeVideos = [
+    { url: "https://www.youtube.com/embed/AYAHkql75qM?si=OVFCmPnPwVTmPB3K", label: 'harvard' },
+    { url: "https://www.youtube.com/embed/CKIMKEXKUas?si=kUzLdVqQkcWFjVJL", label: 'degree' }
+];
+
+let randomVideo = primeVideos[Math.floor(Math.random() * primeVideos.length)];
+
 let videoTrial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: ` 
     <h1> <span class = 'title'>Task 1 of 3</span></h1>
     <p> Please watch the following video </p>
     <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/AYAHkql75qM?si=OVFCmPnPwVTmPB3K" 
+        src="${randomVideo.url}" 
         title="YouTube video player" frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
@@ -46,11 +75,10 @@ let videoTrial = {
     data: {
         collect: true,
         trialType: 'prime',
-        whichPrime: 'video'
-    },
+        whichPrime: randomVideo.label
+    }
 };
 timeline.push(videoTrial);
-
 // Survey Trial //
 // Define likert scale
 let likertScale = [
