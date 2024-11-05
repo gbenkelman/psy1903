@@ -12,9 +12,13 @@ let welcomeTrial = {
 
     <p>In this experiment, you will complete the following three tasks:</p>
 
-    <p>In Task 1, you will be asked to watch a short video.</p>
-    <p>In Task 2, you will answer a brief series of questions.</p>
-    <p>In Task 3, you will be asked to categorize a series of words.</p>
+    <span class='box'>
+    <ul>
+        <li>In Task 1, you will be asked to watch a short video.</li>
+        <li>In Task 2, you will be asked to categorize a series of words.</li>
+        <li>In Task 3, you will answer a brief series of questions.</li>
+    </ul>
+    </span>
 
     <p>Press <span class='key'>SPACE</span> to begin.</p>
     `,
@@ -56,30 +60,6 @@ let likertScale = [
     "Agree",
     "Strongly Agree"
 ];
-
-// Survey questions
-let survey = {
-    type: jsPsychSurveyLikert,
-    questions: [
-        { prompt: "If I had a mental disorder, I would feel ashamed.", labels: likertScale },
-        { prompt: "If I had a mental disorder and I could not solve my own problems, I would feel bad about myself.", labels: likertScale },
-        { prompt: "I would feel a failure if I became mentally unwell.", labels: likertScale },
-        { prompt: "If I had a mental disorder, I would feel like no one would want to get close to me.", labels: likertScale },
-        { prompt: "If I had a mental disorder, I would feel weak.", labels: likertScale },
-        { prompt: "If I had a mental disorder, I would be happy to seek help from a mental health professional.", labels: likertScale },
-        { prompt: "I would feel comfortable discussing a colleague’s mental health problem with them.", labels: likertScale },
-        { prompt: "I’m good at talking to people with mental health problems.", labels: likertScale },
-        { prompt: "If I were an employer, I would feel comfortable employing someone with a mental disorder.", labels: likertScale },
-        { prompt: "Having a mental disorder is nothing to be ashamed of.", labels: likertScale },
-    ],
-    randomize_question_order: true,
-    data: {
-        collect: true,
-        trialType: 'questionnaire',
-    },
-};
-timeline.push(survey);
-
 
 // IAT //
 //Beginning the outer loop
@@ -144,6 +124,29 @@ for (let block of conditions) {
         timeline.push(fixationTrial);
     }
 }
+
+// Survey questions
+let survey = {
+    type: jsPsychSurveyLikert,
+    questions: [
+        { prompt: "If I had a mental disorder, I would feel ashamed.", labels: likertScale },
+        { prompt: "If I had a mental disorder and I could not solve my own problems, I would feel bad about myself.", labels: likertScale },
+        { prompt: "I would feel a failure if I became mentally unwell.", labels: likertScale },
+        { prompt: "If I had a mental disorder, I would feel like no one would want to get close to me.", labels: likertScale },
+        { prompt: "If I had a mental disorder, I would feel weak.", labels: likertScale },
+        { prompt: "If I had a mental disorder, I would be happy to seek help from a mental health professional.", labels: likertScale },
+        { prompt: "I would feel comfortable discussing a colleague’s mental health problem with them.", labels: likertScale },
+        { prompt: "I’m good at talking to people with mental health problems.", labels: likertScale },
+        { prompt: "If I were an employer, I would feel comfortable employing someone with a mental disorder.", labels: likertScale },
+        { prompt: "Having a mental disorder is nothing to be ashamed of.", labels: likertScale },
+    ],
+    randomize_question_order: true,
+    data: {
+        collect: true,
+        trialType: 'questionnaire',
+    },
+};
+timeline.push(survey);
 
 // Results Trial //
 let resultsTrial = {

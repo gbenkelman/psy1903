@@ -63,3 +63,68 @@ ul {
 .txt {
     text-align: left;
 }
+
+.expName {
+    font-family: Georgia;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.key {
+    border: 1px solid black;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.box {
+    border: 1px solid black;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: rgb(239, 239, 239);
+}
+
+ul {
+    padding-left: 30px;
+    text-align: left;
+}
+
+.category1 {
+    margin-right: 100px;
+}
+
+.category2 {
+    margin-left: 100px;
+}
+
+.word {
+    margin-top: 100px;
+    font-size: 60px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
