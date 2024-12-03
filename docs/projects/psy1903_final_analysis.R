@@ -4,6 +4,8 @@ if (!require("pacman")) {install.packages("pacman"); require("pacman")}
 
 p_load("tidyverse","rstudioapi","lme4","emmeans","psych","corrplot","jsonlite")
 
+setwd("~/Desktop/psy1903/stats/final_stats")
+
 #### D-score Function --------------------------------
 
 if (!require("pacman")) {install.packages("pacman"); require("pacman")}  # First install and load in pacman to R
@@ -40,20 +42,25 @@ iat_data2$correct <- as.logical(iat_data2$correct)
 # ## IAT
 # ## Step 1: Specify your function with one argument, data
 calculate_IAT_dscore <- function(data) {
-  ## Step 2: Select only trials with rt > 300 ms and < 5000 ms (subset full data frame into new data frame called tmp)
-  tmp <- data[data$rt > 300 & data$rt < 5000 & data$correct == "true",] 
-  ## Step 3: Separate congruent and incongruent trials (subset tmp into two new data frames: congruent_trials and incongruent_trials)
-  congruent_trials <- tmp[tmp$expectedCategoryAsDisplayed == "treatment or humanizing" | tmp$expectedCategoryAsDisplayed == "disorders or stigmatizing",]
-  incongruent_trials <- tmp[tmp$expectedCategoryAsDisplayed == "treatment or stigmatizing" | tmp$expectedCategoryAsDisplayed == "disorders or humanizing",]
-  
-  ## Step 4: Calculate mean for congruent and mean for incongruent trials (mean_congruent, mean_incongruent)
-  mean_congruent <- mean(congruent_trials$rt, na.rm = TRUE)
-  mean_incongruent <- mean(incongruent_trials$rt, na.rm = TRUE)
+  # ## Step 2: Select only trials with rt > 300 ms and < 5000 ms (subset full data frame into new data frame called tmp)
+  tmp <- data %>%
+    filter(rt %in% 300:5000)
+  # ## Step 3: Separate congruent and incongruent trials (subset tmp into two new data frames: congruent_trials and incongruent_trials) 
+  congruent_trials <- tmp %>%
+    filter(rightCategory == "treatment or humanizing" | leftCategory == "treatment or humanizing") 
+  incongruent_trials <- tmp %>%
+    filter(leftCategory == "treatment or stigmatizing" | rightCategory == "treatment or stigmatizing")
+  # 
+  # ## Step 4: Calculate mean for congruent and mean for incongruent trials (mean_congruent, mean_incongruent)
+  mean_congruent <- mean(congruent_trials$rt)
+  mean_incongruent <- mean(incongruent_trials$rt)
+  # 
   # ## Step 5: Calculate standard deviation for all trials (pooled_sd) 
   pooled_sd <- sd(tmp$rt)
+  # 
   # ## Step 6: Calculate D-score
   d_score <- (mean_incongruent - mean_congruent) / pooled_sd
-  #Step 7: Delete tmp file
+  # ## Step 7: Delete tmp file
   rm(tmp)
   # ## Step 8: Return D-score
   return(d_score)
